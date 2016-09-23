@@ -851,7 +851,7 @@ SIO_WRITE sioWriteInfraRed(u8 data)
 //Selects slot 1 or 2
 #define SLOT_NR 0x2000
 
-void chkTriggerInt(void) {
+void chkTriggerInt() {
 	//Conditions for triggerring an interrupt.
 	//this is not correct, but ... it can be fixed later
 	 SIO_INT(); return;
@@ -895,7 +895,7 @@ static void sioWrite8inl(u8 data)
 
 int clrAckCnt =0;
 
-void sioStatRead(void) {
+void sioStatRead() {
 
 if (clrAckCnt > 1) {  //This check can probably be removed...
 	sio.StatReg &= ~ACK_INP; //clear (goes inactive) /ACK line.
