@@ -195,6 +195,8 @@ void __fastcall _hwWrite32( u32 mem, u32 value )
 					psHu32(mem) = value;
 				return;
 
+				// TODO: psx handling is done in the default case. Keep the code until we decide if we decide which interface to use (sif2/Pgif dma)
+#if 0
 				mcase(SBUS_F300) :
 					psxHu32(0x1f801814) = value;
 				/*
@@ -223,6 +225,8 @@ void __fastcall _hwWrite32( u32 mem, u32 value )
 				mcase(SBUS_F380) :
 					psHu32(mem) = value;
 				return;
+#endif
+
 				mcase(MCH_RICM)://MCH_RICM: x:4|SA:12|x:5|SDEV:1|SOP:4|SBC:1|SDEV:5
 					if ((((value >> 16) & 0xFFF) == 0x21) && (((value >> 6) & 0xF) == 1) && (((psHu32(0xf440) >> 7) & 1) == 0))//INIT & SRP=0
 						rdram_sdevid = 0;	// if SIO repeater is cleared, reset sdevid
